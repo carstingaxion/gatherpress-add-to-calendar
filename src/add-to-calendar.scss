@@ -1,0 +1,55 @@
+
+/* add-to-calendar.css | https://wpt.test/wp-content/plugins/gatherpress-add-to-calendar/build/add-to-calendar/add-to-calendar.css?ver=1710455243 */
+
+
+.gp-add-to-calendar {
+	position: relative;
+/* 
+	&__icon {
+		align-items: flex-start;
+		display: flex;
+	}
+
+	&__item {
+		align-items: center;
+		display: flex;
+		gap: 0.75rem;
+	}
+ */
+	&__list {
+		border: 1px solid var(--gp-text-color,#CCCCCC);
+		border-radius: 0.4rem;
+		flex-direction: column;
+		overflow: hidden;
+		position: absolute;
+		// width: 15rem;
+		z-index: 50;
+	}
+
+	&__list-item {
+		// border-top: 1px solid var(--gp-text-color,#CCCCCC);
+		// margin-top: -1px;
+		
+		
+		a {
+			border-top: 1px solid var(--gp-text-color,#CCCCCC);
+			margin-top: -1px;
+
+
+			border-radius: 0; 
+            // background-color: inherit;
+            // color: inherit;
+            // text-decoration: inherit;
+			display: block;
+			// padding: 0.5rem;
+
+			&:hover {
+				// background-color: #EEEEEE;
+			}
+		}
+	}
+
+	&__row {
+		display: flex;
+	}
+}
