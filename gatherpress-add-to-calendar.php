@@ -241,16 +241,17 @@ function add_calendar_links_button_block( $block_content, $block ) {
 		$text_color        = ( isset( $block['attrs']['textColor'] ) ) ? "var(--wp--preset--color--{$block['attrs']['textColor']})" : $custom_text_color;
 		// $custom_background_color = ( isset( $block['attrs']['customBackgroundColor'] ) ) ? $block['attrs']['customBackgroundColor'] : 'inherit';
 		// $background_color        = ( isset( $block['attrs']['backgroundColor'] ) ) ? "var(--wp--preset--color--{$block['attrs']['backgroundColor']})" : $custom_background_color;
-		$align = ( isset( $block['attrs']['textAlign'] ) ) ? $block['attrs']['textAlign'] : 'initial';
+		$align = ( isset( $block['attrs']['textAlign'] ) ) ? $block['attrs']['textAlign'] : 'unset';
+		$align = ( 'center' === $align ) ? 0 : $align;
 
 		?>
 		--gp-text-color: <?php echo $text_color ; ?>;
 		
-		left: <?php echo ('left' === $align) ? 0 : $align; ?>;
-		right: <?php echo ('right' === $align) ? 0 : $align; ?>;
+		left: <?php echo ( 'left' === $align ) ? 0 : $align; ?>;
+		right: <?php echo ( 'right' === $align ) ? 0 : $align; ?>;
 
 	/*		
-		--gp-bg-color: <?php echo $background_color; ?>;
+		--gp-bg-color: <?php #echo $background_color; ?>;
 		&-item {
 			background-color: var(--gp-bg-color, inherit);
 			color: var(--gp-text-color, inherit);
