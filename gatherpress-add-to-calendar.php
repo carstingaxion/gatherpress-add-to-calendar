@@ -230,10 +230,11 @@ function add_calendar_links_button_block( $block_content, $block ) {
 	<?php } ?>
 	</div>
 <style>
-/*
+/**
  * Working, but
  * would be tideous to add this for all possible block settings
  *
+ * @see https://developer.wordpress.org/news/2023/11/01/how-to-add-custom-color-options-to-blocks/
  */  
 	.gp-add-to-calendar__list {
 		<?php 

@@ -36,6 +36,12 @@ registerBlockVariation( 'core/button', {
 	...GPIB_VARIATION_ATTRIBUTES,
 	name: GPIB,
 	isActive: [ 'namespace', 'title' ], // 'className' can be a string of multiple classes, e.g. when using block styles, so avoid them over here. The 'title' attibute however is unique to our variation and non-editable by the editor.
+	// @source https://github.com/WordPress/gutenberg/issues/41303#issuecomment-1760985709 
+	// isActive: ({ className }) => {
+	// 	return (
+	// 		className.includes(GROUP_CARD_VARIATION) // check if className contains GROUP_CARD_VARIATION and not equals. incase you add additional css classes it will still work
+	// 	);
+	// },
 	attributes: {
 		...GPIB_BUTTON_ATTRIBUTES
 	},
