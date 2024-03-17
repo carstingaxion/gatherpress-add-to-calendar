@@ -4,7 +4,7 @@ module.exports = {
 	entry: {
 		'variations/variations':
 			'./src/variations.js',
-		'add-to-calendar/add-to-calendar':
-			'./src/add-to-calendar.js',
+		'viewScript/viewScript':
+			'./src/viewScript.js',
 	},
 };

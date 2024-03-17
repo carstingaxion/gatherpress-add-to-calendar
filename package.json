@@ -7,12 +7,14 @@
 	"main": "variations.js",
 	"scripts": {
 		"build": "wp-scripts build",
+		"build:ia": "wp-scripts build --experimental-modules",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"start": "wp-scripts start",
+		"start:ia": "wp-scripts start --experimental-modules"
 	},
 	"files": [
 		"build",
@@ -21,5 +23,8 @@
 	],
 	"devDependencies": {
 		"@wordpress/scripts": "^27.4.0"
+	},
+	"dependencies": {
+		"@wordpress/interactivity": "^5.2.0"
 	}
 }

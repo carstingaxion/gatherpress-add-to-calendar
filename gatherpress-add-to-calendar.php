@@ -159,6 +159,23 @@ function add_calendar_links_button_block( $block_content, $block ) {
 
 	$button = new \WP_HTML_Tag_Processor( $block_content );
 
+
+	if ( $button->next_tag( 'div' ) ) {
+	// add this to the wrap
+		$button->set_attribute( 'data-wp-interactive', 'gp-ia-add-to-calendar' );
+		$button->set_attribute( 'data-wp-context', '{ "isOpen": false }' );
+		$button->set_attribute( 'data-wp-watch', 'callbacks.logIsOpen' );
+	}
+
+	// Registers and enqueues a module.
+	\wp_enqueue_script_module(
+		'gp-ia-add-to-calendar',
+		plugin_dir_url( __FILE__ ) . 'build/viewScript/viewScript.js',
+		array( '@wordpress/interactivity' )
+	);
+
+
+
 	$classes_for_wrap = join(
 		' ',
 		array_filter(
@@ -203,9 +220,18 @@ function add_calendar_links_button_block( $block_content, $block ) {
 			)
 		);
 
+		// Generate unique id for aria-controls.
+		$unique_id = wp_unique_id( 'list-' );
+		
+		// add to <button>
+		$button->set_attribute( 'data-wp-on--click', 'actions.toggle' );
+		$button->set_attribute( 'data-wp-bind--aria-expanded', 'context.isOpen' );
+		$button->set_attribute( 'aria-controls', esc_attr( $unique_id ) );
 
 
 		$button->add_class( 'gp-add-to-calendar__init' );
+
+
 		$block_content = $button->get_updated_html();
 	}
 	
@@ -215,8 +241,7 @@ function add_calendar_links_button_block( $block_content, $block ) {
 
 	ob_start(); ?>
 
-
-	<div class="gp-add-to-calendar__list" style="display: none;">
+	<div id="<?php echo esc_attr( $unique_id ); ?>" data-wp-bind--hidden="!context.isOpen" class="gp-add-to-calendar__list" style="xdisplay: none;">
 	<?php foreach ( $gatherpress_event->get_calendar_links() as $gatherpress_calendar ) { ?>
 		<div class="gp-add-to-calendar__list-item <?php echo $classes_for_wrap; ?>">
 		<?php if ( ! empty( $gatherpress_calendar['link'] ) ) { ?>
@@ -267,7 +292,7 @@ function add_calendar_links_button_block( $block_content, $block ) {
 
 
 	// Enqueue frontend script manually, because there is no 'viewScript' prop avail. for blockVariations.
-	enqueue_asset( 'add-to-calendar' );
+	// enqueue_asset( 'add-to-calendar' );
 
 	return str_replace( 
 		'</button>',
